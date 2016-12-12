@@ -3,8 +3,18 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/javascripts/jk.js"></script>
+    <script>
+      BJ_REPORT.init({
+        id: 2,
+        uin: '525315462', //可以默认不传
+        url: "http://52.199.218.179:8000/badjs",
+      }).tryJs().spyAll();
+    </script>
+    <script src="/javascripts/error.js"></script>
   </head>
   <body>
+  <iframe src="http://www.qq.com">iframe - users</iframe>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
     <img src="/code/e401" alt="401">
@@ -13,10 +23,23 @@
     <img src="/code/e404" alt="404">
     <img src="/code/e503" alt="503">
     <img src="/code/e500" alt="500">
-    <iframe src="/code/e500">iframe</iframe>
+  <iframe src="/code/e500">iframe</iframe>
     <iframe src="/test/">iframe - users</iframe>
+  <div id="if">
+
+  </div>
     <script src="/code/index"></script>
     <script src="/javascripts/error.js"></script>
     <script src="/code/edit"></script>
+  <script src="http://www.oa.com"></script>
+    <script>
+      window.addEventListener('load', function () {
+        console.log('**********----- load------*********');
+        var ifd = document.getElementById("if");
+        ifd && setTimeout(function () {
+          ifd.innerHTML = "<iframe src='http://utest.qq.com'></iframe>"
+        }, 300)
+      })
+    </script>
   </body>
 </html>

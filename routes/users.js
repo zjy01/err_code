@@ -15,5 +15,18 @@ router.get('/alert', function *(next) {
     title: 'alert!'
   });
 });
+router.get('/ajax', function *(next) {
+  yield this.render('ajax', {
+    title: 'ajax!'
+  });
+});
+router.get('/other', function *(next) {
+  yield this.render('other', {
+    title: 'other!'
+  });
+});
+router.get('/only', function *(next) {
+  this.body = 'only';
+});
 
 module.exports = router;

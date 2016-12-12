@@ -8,6 +8,7 @@ var app = require('koa')()
 var index = require('./routes/index');
 var code = require('./routes/code');
 var users = require('./routes/users');
+var notify = require('./routes/notify');
 
 // global middlewares
 app.use(views('views', {
@@ -15,9 +16,12 @@ app.use(views('views', {
   default: 'ejs'
 }));
 app.use(require('koa-bodyparser')());
+app.use(function *(next) {
+  this.body = this.request.body;
+  yield next;
+});
 app.use(json());
 app.use(logger());
-
 app.use(function *(next) {
   var start = new Date;
   yield next;
@@ -31,6 +35,7 @@ app.use(require('koa-static')(__dirname + '/public'));
 koa.use('/', index.routes(), index.allowedMethods());
 koa.use('/code', code.routes(), code.allowedMethods());
 koa.use('/test', users.routes(), users.allowedMethods());
+koa.use('/notify', notify.routes(), notify.allowedMethods());
 
 // mount root routes
 app.use(koa.routes());
