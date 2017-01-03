@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div id="box">
+      <table border="1" width="100%" cellpadding="5" cellspacing="0">
+        <tbody>
+          <tr>
+            <td>cookie count:</td>
+            <td><%= count %></td>
+          </tr>
+          <tr>
+            <td>cache-control:</td>
+            <td>
+              <p id="cache-control"></p>
+            </td>
+          </tr>
+          <tr>
+            <td>expires:</td>
+            <td>
+              <p id="expires"></p>
+            </td>
+          </tr>
+          <tr>
+            <td>Last-modified:</td>
+            <td>
+              <p id="lastmodified"></p>
+            </td>
+          </tr>
+          <tr>
+            <td>etag:</td>
+            <td>
+              <p id="etag"></p>
+            </td>
+          </tr>
+          <tr>
+            <td>localStorage count:</td>
+            <td>
+              <p id="localStorage"></p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <script>
+        $(function () {
+          $.ajax({
+            url: '/cache/cachecontrol',
+            success: function(data){
+              $("#cache-control").text(data.time)
+            }
+          })
+          $.ajax({
+            url: '/cache/expires',
+            success: function(data){
+              $("#expires").text(data.time)
+            }
+          })
+          $.ajax({
+            url: '/cache/lastmodified',
+            success: function(data){
+              $("#lastmodified").text(data.time)
+            }
+          })
+          $.ajax({
+            url: '/cache/etag',
+            success: function(data){
+              $("#etag").text(data.time)
+            }
+          })
+
+          var count = localStorage.getItem("count") || 1;
+          $("#localStorage").text(count);
+          count ++;
+          localStorage.setItem('count', count);
+        })
+    </script>
+  </body>
+</html>
