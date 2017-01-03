@@ -1,6 +1,6 @@
 var router = require('koa-router')();
 router.get('/index', function *(next) {
-  let count = Number(this.cookies.get('count')) || 1;
+  let count = Number(this.cookies.get('count')) || 0;
   count ++;
   this.cookies.set('count', count);
   yield this.render('cache', {
