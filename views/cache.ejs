@@ -43,6 +43,12 @@
               <p id="localStorage"></p>
             </td>
           </tr>
+          <tr>
+            <td>sessionStorage count:</td>
+            <td>
+              <p id="sessionStorage"></p>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -77,6 +83,11 @@
           $("#localStorage").text(count);
           count ++;
           localStorage.setItem('count', count);
+
+          count = sessionStorage.getItem("count") || 1;
+          $("#sessionStorage").text(count);
+          count ++;
+          sessionStorage.setItem('count', count);
         })
     </script>
   </body>
